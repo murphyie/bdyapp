@@ -1,0 +1,499 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Birthday Celebration Design System - Dual Theme Support */
+
+@layer base {
+  /* ========== SISTERLY THEME (Magical/Warm) ========== */
+  :root {
+    /* Deep midnight with magical purple undertones */
+    --background: 232 47% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 232 40% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 232 40% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Warm coral as primary - friendship vibes */
+    --primary: 16 85% 65%;
+    --primary-foreground: 232 47% 8%;
+
+    /* Soft lavender secondary */
+    --secondary: 292 60% 65%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Muted navy */
+    --muted: 232 30% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    /* Warm peach/gold accent */
+    --accent: 38 95% 65%;
+    --accent-foreground: 232 47% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 232 30% 20%;
+    --input: 232 30% 15%;
+    --ring: 16 85% 65%;
+
+    --radius: 0.75rem;
+
+    /* Custom sisterly birthday colors - warm & cozy */
+    --birthday-pink: 16 85% 65%;
+    --birthday-gold: 38 95% 65%;
+    --birthday-cyan: 292 60% 70%;
+    --birthday-purple: 330 70% 65%;
+    --birthday-navy: 232 47% 8%;
+    --birthday-glow: 16 100% 70%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(232 47% 8%) 0%, hsl(270 40% 15%) 50%, hsl(232 47% 12%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(232 40% 14%) 0%, hsl(232 40% 10%) 100%);
+    --gradient-button: linear-gradient(135deg, hsl(330 85% 65%) 0%, hsl(270 60% 55%) 100%);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(330 85% 65% / 0.3);
+    --shadow-card: 0 10px 40px hsl(232 47% 5% / 0.5);
+
+    --sidebar-background: 232 40% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 16 85% 65%;
+    --sidebar-primary-foreground: 232 47% 8%;
+    --sidebar-accent: 232 30% 18%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 232 30% 20%;
+    --sidebar-ring: 16 85% 65%;
+  }
+
+  /* ========== BROTHERLY THEME (Gaming/Neon) ========== */
+  .theme-brotherly {
+    /* Deep dark with blue undertones - gaming aesthetic */
+    --background: 220 20% 6%;
+    --foreground: 180 100% 95%;
+
+    --card: 220 25% 10%;
+    --card-foreground: 180 100% 95%;
+
+    --popover: 220 25% 8%;
+    --popover-foreground: 180 100% 95%;
+
+    /* Neon Green as primary - gaming vibes */
+    --primary: 142 90% 50%;
+    --primary-foreground: 220 20% 6%;
+
+    /* Electric Blue secondary */
+    --secondary: 195 100% 50%;
+    --secondary-foreground: 220 20% 6%;
+
+    /* Muted dark blue */
+    --muted: 220 25% 15%;
+    --muted-foreground: 200 20% 60%;
+
+    /* Red/Orange accent - fire vibes */
+    --accent: 15 100% 55%;
+    --accent-foreground: 220 20% 6%;
+
+    --destructive: 0 90% 55%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 30% 18%;
+    --input: 220 25% 12%;
+    --ring: 142 90% 50%;
+
+    /* Gaming birthday colors - neon & electric */
+    --birthday-pink: 142 90% 50%;       /* Neon Green */
+    --birthday-gold: 15 100% 55%;       /* Fire Orange */
+    --birthday-cyan: 195 100% 50%;      /* Electric Blue */
+    --birthday-purple: 280 100% 60%;    /* Neon Purple */
+    --birthday-navy: 220 20% 6%;        /* Deep Dark */
+    --birthday-glow: 142 100% 55%;      /* Bright Green Glow */
+
+    /* Gaming gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(220 20% 6%) 0%, hsl(220 30% 12%) 50%, hsl(220 20% 8%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 25% 12%) 0%, hsl(220 25% 8%) 100%);
+    --gradient-button: linear-gradient(135deg, hsl(142 90% 50%) 0%, hsl(195 100% 50%) 100%);
+    
+    /* Neon shadows */
+    --shadow-glow: 0 0 30px hsl(142 90% 50% / 0.4);
+    --shadow-card: 0 10px 40px hsl(220 20% 3% / 0.6);
+
+    --sidebar-background: 220 25% 8%;
+    --sidebar-foreground: 180 100% 95%;
+    --sidebar-primary: 142 90% 50%;
+    --sidebar-primary-foreground: 220 20% 6%;
+    --sidebar-accent: 220 25% 15%;
+    --sidebar-accent-foreground: 180 100% 95%;
+    --sidebar-border: 220 30% 18%;
+    --sidebar-ring: 142 90% 50%;
+  }
+
+  /* ========== BROTHERLY SIMPLE THEME (Clean/Minimal) ========== */
+  .theme-brotherly-simple {
+    /* Clean dark with subtle blue-gray tones */
+    --background: 220 15% 10%;
+    --foreground: 210 20% 95%;
+
+    --card: 220 15% 14%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 220 15% 12%;
+    --popover-foreground: 210 20% 95%;
+
+    /* Steel blue as primary - clean masculine */
+    --primary: 210 70% 55%;
+    --primary-foreground: 220 15% 10%;
+
+    /* Slate gray secondary */
+    --secondary: 220 20% 45%;
+    --secondary-foreground: 210 20% 95%;
+
+    /* Muted slate */
+    --muted: 220 15% 20%;
+    --muted-foreground: 210 15% 60%;
+
+    /* Amber accent - warm contrast */
+    --accent: 40 90% 55%;
+    --accent-foreground: 220 15% 10%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 210 20% 95%;
+
+    --border: 220 15% 22%;
+    --input: 220 15% 16%;
+    --ring: 210 70% 55%;
+
+    /* Simple birthday colors - clean & subtle */
+    --birthday-pink: 210 70% 55%;       /* Steel Blue */
+    --birthday-gold: 40 90% 55%;        /* Amber */
+    --birthday-cyan: 200 60% 50%;       /* Teal */
+    --birthday-purple: 250 50% 55%;     /* Soft Purple */
+    --birthday-navy: 220 15% 10%;       /* Clean Dark */
+    --birthday-glow: 210 80% 60%;       /* Blue Glow */
+
+    /* Clean gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(220 15% 10%) 0%, hsl(220 20% 14%) 50%, hsl(220 15% 12%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 15% 16%) 0%, hsl(220 15% 12%) 100%);
+    --gradient-button: linear-gradient(135deg, hsl(210 70% 55%) 0%, hsl(200 60% 50%) 100%);
+    
+    /* Subtle shadows */
+    --shadow-glow: 0 0 20px hsl(210 70% 55% / 0.25);
+    --shadow-card: 0 8px 30px hsl(220 15% 5% / 0.5);
+
+    --sidebar-background: 220 15% 12%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 210 70% 55%;
+    --sidebar-primary-foreground: 220 15% 10%;
+    --sidebar-accent: 220 15% 20%;
+    --sidebar-accent-foreground: 210 20% 95%;
+    --sidebar-border: 220 15% 22%;
+    --sidebar-ring: 210 70% 55%;
+  }
+
+  /* Simple theme uses clean sans-serif fonts */
+  .theme-brotherly-simple h1,
+  .theme-brotherly-simple h2,
+  .theme-brotherly-simple h3,
+  .theme-brotherly-simple .font-display {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+  }
+
+  /* Keep light mode the same as root for this magical night theme */
+  .light {
+    --background: 232 47% 8%;
+    --foreground: 210 40% 98%;
+    --card: 232 40% 12%;
+    --card-foreground: 210 40% 98%;
+    --popover: 232 40% 10%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 16 85% 65%;
+    --primary-foreground: 232 47% 8%;
+    --secondary: 292 60% 65%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 232 30% 18%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 38 95% 65%;
+    --accent-foreground: 232 47% 8%;
+    --border: 232 30% 20%;
+    --input: 232 30% 15%;
+    --ring: 16 85% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Dancing Script', cursive;
+  }
+
+  /* Gaming font for brotherly theme */
+  .theme-brotherly h1,
+  .theme-brotherly h2,
+  .theme-brotherly h3,
+  .theme-brotherly .font-display {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--birthday-pink)) 0%, hsl(var(--birthday-gold)) 50%, hsl(var(--birthday-cyan)) 100%);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px hsl(var(--birthday-pink) / 0.5), 0 0 40px hsl(var(--birthday-pink) / 0.3);
+  }
+
+  /* Enhanced neon glow for gaming theme */
+  .theme-brotherly .glow-text {
+    text-shadow: 0 0 10px hsl(var(--birthday-pink) / 0.8), 
+                 0 0 20px hsl(var(--birthday-pink) / 0.6), 
+                 0 0 40px hsl(var(--birthday-pink) / 0.4),
+                 0 0 60px hsl(var(--birthday-pink) / 0.2);
+  }
+
+  .glow-box {
+    box-shadow: 0 0 30px hsl(var(--birthday-pink) / 0.3), 0 0 60px hsl(var(--birthday-purple) / 0.2);
+  }
+
+  /* Enhanced neon box glow for gaming theme */
+  .theme-brotherly .glow-box {
+    box-shadow: 0 0 20px hsl(var(--birthday-pink) / 0.4), 
+                0 0 40px hsl(var(--birthday-pink) / 0.3),
+                0 0 60px hsl(var(--birthday-cyan) / 0.2),
+                inset 0 0 20px hsl(var(--birthday-pink) / 0.1);
+  }
+
+  .glass-card {
+    @apply backdrop-blur-xl bg-card/50 border border-border/50;
+    box-shadow: 0 8px 32px hsl(var(--birthday-navy) / 0.3);
+  }
+
+  /* Gaming glass card with neon border */
+  .theme-brotherly .glass-card {
+    border: 1px solid hsl(var(--birthday-pink) / 0.3);
+    box-shadow: 0 8px 32px hsl(var(--birthday-navy) / 0.5),
+                0 0 20px hsl(var(--birthday-pink) / 0.1);
+  }
+
+  .magic-button {
+    @apply relative overflow-hidden px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--birthday-pink)) 0%, hsl(var(--birthday-purple)) 100%);
+    box-shadow: 0 4px 20px hsl(var(--birthday-pink) / 0.4);
+  }
+
+  .magic-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px hsl(var(--birthday-pink) / 0.6);
+  }
+
+  /* Gaming button style */
+  .theme-brotherly .magic-button {
+    background: linear-gradient(135deg, hsl(var(--birthday-pink)) 0%, hsl(var(--birthday-cyan)) 100%);
+    box-shadow: 0 0 20px hsl(var(--birthday-pink) / 0.5),
+                0 0 40px hsl(var(--birthday-pink) / 0.3);
+    border: 2px solid hsl(var(--birthday-pink) / 0.5);
+  }
+
+  .theme-brotherly .magic-button:hover {
+    box-shadow: 0 0 30px hsl(var(--birthday-pink) / 0.7),
+                0 0 60px hsl(var(--birthday-pink) / 0.4),
+                0 0 80px hsl(var(--birthday-cyan) / 0.3);
+  }
+
+  .magic-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .magic-button:hover::before {
+    left: 100%;
+  }
+
+  .floating {
+    animation: floating 3s ease-in-out infinite;
+  }
+
+  .wiggle:hover {
+    animation: wiggle 0.5s ease-in-out;
+  }
+
+  /* Scanline effect for gaming theme */
+  .theme-brotherly .scanlines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(var(--birthday-pink) / 0.03) 2px,
+      hsl(var(--birthday-pink) / 0.03) 4px
+    );
+    pointer-events: none;
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+  }
+
+  /* Enhanced neon text shadow for gaming */
+  .theme-brotherly .text-shadow-glow {
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
+  }
+}
+
+/* Custom Animations */
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--birthday-pink) / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--birthday-pink) / 0.8);
+  }
+}
+
+/* Gaming pulse glow - more intense */
+.theme-brotherly .animate-pulse-glow {
+  animation: gaming-pulse-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes gaming-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--birthday-pink) / 0.5),
+                0 0 40px hsl(var(--birthday-pink) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--birthday-pink) / 0.8),
+                0 0 80px hsl(var(--birthday-pink) / 0.5),
+                0 0 100px hsl(var(--birthday-cyan) / 0.3);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    border-color: transparent;
+  }
+  51%, 100% {
+    border-color: hsl(var(--birthday-pink));
+  }
+}
+
+/* Glitch effect for gaming theme */
+@keyframes glitch {
+  0%, 100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+.theme-brotherly .glitch-hover:hover {
+  animation: glitch 0.3s ease-in-out;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--birthday-navy));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--birthday-purple));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--birthday-pink));
+}
+
+/* Gaming scrollbar */
+.theme-brotherly::-webkit-scrollbar-thumb {
+  background: hsl(var(--birthday-pink));
+  box-shadow: 0 0 10px hsl(var(--birthday-pink) / 0.5);
+}
+
+.theme-brotherly::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--birthday-cyan));
+  box-shadow: 0 0 15px hsl(var(--birthday-cyan) / 0.7);
+}
