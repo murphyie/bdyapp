@@ -6,7 +6,7 @@ modules = ["nodejs-22"]
 
 [nix]
 channel = "stable-24_11"
-packages = ["unzip"]
+packages = ["unzip", "gut"]
 
 [gitHubImport]
 requiredFiles = [".replit", "replit.nix", ".config"]
