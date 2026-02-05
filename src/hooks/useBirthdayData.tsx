@@ -18,6 +18,7 @@ export interface Settings {
   theme_type: 'sisterly' | 'brotherly' | 'brotherly-simple';
   landing_page_word: string;
   show_photos: boolean;
+  favicon_url: string | null;
 }
 
 export interface Photo {
@@ -56,7 +57,8 @@ export function useSettings() {
         .maybeSingle();
       
       if (error) throw error;
-      return data as Settings | null;
+      // Cast through unknown to handle new fields not yet in DB schema
+      return data as unknown as Settings | null;
     },
   });
 }

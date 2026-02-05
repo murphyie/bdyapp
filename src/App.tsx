@@ -85,6 +85,43 @@ function AnimatedRoutes() {
   
   // Apply theme class to document
   const themeType = settings?.theme_type || 'brotherly';
+  const birthdayName = settings?.birthday_name || 'Someone Special';
+  const faviconUrl = settings?.favicon_url;
+  
+  // Update page title and favicon dynamically
+  React.useEffect(() => {
+    document.title = `Happy Birthday ${birthdayName}! 🎂`;
+    
+    // Update meta tags
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', `A special birthday celebration for ${birthdayName} - filled with memories, music, and love`);
+    }
+    
+    // Update Open Graph title
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', `Happy Birthday ${birthdayName}! 🎂`);
+    }
+    
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', `A special birthday celebration for ${birthdayName}`);
+    }
+  }, [birthdayName]);
+  
+  // Update favicon dynamically
+  React.useEffect(() => {
+    if (faviconUrl) {
+      let link = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.head.appendChild(link);
+      }
+      link.href = faviconUrl;
+    }
+  }, [faviconUrl]);
   
   // Apply theme class to html element
   React.useEffect(() => {

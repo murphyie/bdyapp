@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Save, Loader2, Calendar, User, Type, Palette, FlaskConical, Sparkles, Music, Send, Layers, ImageIcon, Upload, X, Gamepad2, Heart, Monitor, Camera } from 'lucide-react';
+import { Save, Loader2, Calendar, User, Type, Palette, FlaskConical, Sparkles, Music, Send, Layers, ImageIcon, Upload, X, Gamepad2, Heart, Monitor, Camera, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -28,9 +28,12 @@ export default function GeneralSettings() {
   const [floatingImageUrl, setFloatingImageUrl] = useState<string | null>(null);
   const [themeType, setThemeType] = useState<'sisterly' | 'brotherly' | 'brotherly-simple'>('brotherly');
   const [showPhotos, setShowPhotos] = useState(true);
+  const [faviconUrl, setFaviconUrl] = useState<string | null>(null);
   const [isUploadingImage, setIsUploadingImage] = useState(false);
+  const [isUploadingFavicon, setIsUploadingFavicon] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const faviconInputRef = useRef<HTMLInputElement>(null);
   
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -52,6 +55,7 @@ export default function GeneralSettings() {
       setFloatingImageUrl((settings as any).floating_image_url || null);
       setThemeType((settings as any).theme_type || 'brotherly');
       setShowPhotos((settings as any).show_photos ?? true);
+      setFaviconUrl((settings as any).favicon_url || null);
     }
   }, [settings]);
 
@@ -78,6 +82,7 @@ export default function GeneralSettings() {
           floating_image_url: floatingImageUrl,
           theme_type: themeType,
           show_photos: showPhotos,
+          favicon_url: faviconUrl,
         } as any)
         .eq('id', settings.id);
 
@@ -153,6 +158,62 @@ export default function GeneralSettings() {
     setFloatingImageUrl(null);
     toast({
       title: 'Image removed',
+      description: 'Remember to save your settings to apply.',
+    });
+  };
+
+  // Handle favicon upload
+  const handleFaviconUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: 'Invalid file type',
+        description: 'Please upload an image file (PNG, ICO, or JPG recommended).',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsUploadingFavicon(true);
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `favicon-${Date.now()}.${fileExt}`;
+      const filePath = `favicon/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('birthday-media')
+        .upload(filePath, file, { upsert: true });
+
+      if (uploadError) throw uploadError;
+
+      const { data: urlData } = supabase.storage
+        .from('birthday-media')
+        .getPublicUrl(filePath);
+
+      setFaviconUrl(urlData.publicUrl);
+      toast({
+        title: 'Favicon uploaded!',
+        description: 'Remember to save your settings.',
+      });
+    } catch (err) {
+      console.error('Error uploading favicon:', err);
+      toast({
+        title: 'Upload failed',
+        description: 'Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsUploadingFavicon(false);
+      if (faviconInputRef.current) faviconInputRef.current.value = '';
+    }
+  };
+
+  const handleRemoveFavicon = () => {
+    setFaviconUrl(null);
+    toast({
+      title: 'Favicon removed',
       description: 'Remember to save your settings to apply.',
     });
   };
@@ -282,6 +343,83 @@ export default function GeneralSettings() {
           <p className="text-xs text-muted-foreground">
             3D text on landing page (max 10 chars)
           </p>
+        </div>
+
+        {/* Favicon Upload Section */}
+        <div className="md:col-span-2 space-y-4">
+          <h3 className="text-lg font-semibold flex items-center gap-2">
+            <Globe className="w-5 h-5 text-primary" />
+            Site Favicon
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Upload a custom favicon (browser tab icon). PNG, ICO, or JPG recommended.
+          </p>
+
+          <input
+            ref={faviconInputRef}
+            type="file"
+            accept="image/*"
+            onChange={handleFaviconUpload}
+            className="hidden"
+          />
+
+          <div className="glass-card rounded-xl p-4">
+            {faviconUrl ? (
+              <div className="flex items-start gap-4">
+                <div className="relative group">
+                  <img
+                    src={faviconUrl}
+                    alt="Current favicon"
+                    className="w-16 h-16 object-contain rounded-lg bg-muted/50 p-2"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleRemoveFavicon}
+                    className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm text-muted-foreground mb-2">Custom favicon uploaded</p>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => faviconInputRef.current?.click()}
+                    disabled={isUploadingFavicon}
+                  >
+                    {isUploadingFavicon ? (
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    ) : (
+                      <Upload className="w-4 h-4 mr-2" />
+                    )}
+                    Replace Favicon
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => faviconInputRef.current?.click()}
+                disabled={isUploadingFavicon}
+                className="w-full"
+              >
+                {isUploadingFavicon ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Uploading...
+                  </>
+                ) : (
+                  <>
+                    <Upload className="w-4 h-4 mr-2" />
+                    Upload Favicon
+                  </>
+                )}
+              </Button>
+            )}
+          </div>
         </div>
 
         {/* Theme Toggle Section */}
