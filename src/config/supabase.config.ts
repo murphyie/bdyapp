@@ -9,9 +9,6 @@
  */
 
 export const supabaseConfig = {
-  // Replace with your Supabase project URL
-  supabaseUrl: "YOUR_SUPABASE_URL_HERE",
-  
-  // Replace with your Supabase anon/public key
-  supabaseAnonKey: "YOUR_SUPABASE_ANON_KEY_HERE",
+  supabaseUrl: "https://tprwrpyhworszxpuvfor.supabase.co",
+  supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRwcndycHlod29yc3p4cHV2Zm9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAyODkwNDksImV4cCI6MjA4NTg2NTA0OX0.tZrqqK7igDFn2u47cv0jG_nT7Mq6P9UTP2o6LRVU9iE",
 };
