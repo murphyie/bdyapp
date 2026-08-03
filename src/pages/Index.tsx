@@ -94,7 +94,7 @@ export default function Index() {
               {isSisterly ? (
                 <>
                   <Heart className="w-4 h-4" />
-                  For My Amazing Sister
+                  For My Bauni Bacchi
                   <Heart className="w-4 h-4" />
                 </>
               ) : (
