@@ -9,6 +9,6 @@
  */
 
 export const supabaseConfig = {
-  supabaseUrl: "https://tprwrpyhworszxpuvfor.supabase.co",
-  supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRwcndycHlod29yc3p4cHV2Zm9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAyODkwNDksImV4cCI6MjA4NTg2NTA0OX0.tZrqqK7igDFn2u47cv0jG_nT7Mq6P9UTP2o6LRVU9iE",
+  supabaseUrl: "https://cbwbkztfivxaznsomlhs.supabase.co",
+  supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNid2JrenRmaXZ4YXpuc29tbGhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU3NTQzNjIsImV4cCI6MjEwMTMzMDM2Mn0.8CR-2VKL1v-_kqfsa8EF_WGgpUrj4Q1LkWM8o4qwjBg",
 };
