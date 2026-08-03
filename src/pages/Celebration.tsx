@@ -824,7 +824,7 @@ export default function Celebration() {
             {/* Footer */}
             <div className="text-center py-12 mt-8 pb-32">
               <p className="text-lg text-muted-foreground" style={{ fontFamily: "'Dancing Script', cursive" }}>
-                Made with 🎮 by Murphy (you're welcome, noob)
+                Made with 🖤 by @bansalji_33 🥀
               </p>
             </div>
           </section>
